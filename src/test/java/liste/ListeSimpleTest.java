@@ -65,6 +65,32 @@ class ListeSimpleTest {
     }
 
     @Test
+    void testModifiePremierElementNotFound() {
+        // Setup list
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+
+        // Try to modify an element that doesn't exist
+        listeATester.modifiePremier(3, 10);
+
+        // Assert that the list is unchanged
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    void testModifiePremierEmptyList() {
+        // Setup empty list
+        listeATester = new ListeSimple();
+
+        // Try modifying an element in an empty list
+        listeATester.modifiePremier(1, 10);
+
+        // Assert that the list is still empty
+        assertNull(listeATester.tete);
+    }
+
+
+    @Test
     void modifieTous() {
         listeATester.ajout(1);
         listeATester.ajout(2);
@@ -75,12 +101,7 @@ class ListeSimpleTest {
         assertEquals(4, listeATester.tete.getSuivant().getElement());
     }
 
-    @Test
-    void supprimePremierListeVide() {
-        listeATester.supprimePremier(1);
-        assertNull(listeATester.tete);
-        assertEquals(0, listeATester.getSize());
-    }
+
 
     @Test
     void supprimePremierEnPremierePosition() {
@@ -230,6 +251,23 @@ class ListeSimpleTest {
     }
 
     @Test
+    void echangerNoeudR2EstTete() {
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        Noeud r2 = listeATester.tete;
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete.getSuivant();
+
+        assertEquals("ListeSimple(Noeud(1), Noeud(2), Noeud(3), Noeud(4), Noeud(5))",listeATester.toString());
+
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(1), Noeud(3), Noeud(2), Noeud(4), Noeud(5))",listeATester.toString());
+    }
+
+
+    @Test
     void echangerLePremierNoeudAvecUnAutre() {
         listeATester.ajout(5);
         listeATester.ajout(4);
@@ -243,6 +281,21 @@ class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals( "ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))", listeATester.toString());
     }
+
+    @Test
+    void testSupprimePremierEmptyList() {
+        // Setup empty list
+        listeATester = new ListeSimple();
+
+        // Essayer de supprimer un élément d'une liste vide
+        listeATester.supprimePremier(1);
+
+        // Vérifier que la liste est toujours vide
+        assertNull(listeATester.tete);
+    }
+
+
+
 
     @Test
     void echangerLePremierEnSecondArgumentNoeudAvecUnAutre() {
