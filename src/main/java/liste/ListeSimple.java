@@ -16,6 +16,7 @@ public class ListeSimple {
         return size;
     }
 
+
     /**
      * Ajoute un élément au début de la liste.
      * @param element L'élément à ajouter dans la liste.

@@ -369,6 +369,7 @@ class ListeSimpleTest {
         assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
     }
 
+
     @Test
     void testSupprimePremierEmptyList() {
         // Setup empty list

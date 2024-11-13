@@ -5,6 +5,7 @@ on:
     branches: [main]
     if: github.event.pull_request.merged == true
 
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
