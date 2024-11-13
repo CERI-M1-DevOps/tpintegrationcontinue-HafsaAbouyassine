@@ -6,6 +6,9 @@ on:
     if: github.event.pull_request.merged == true
 
 
+permission :
+  content: write
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -26,6 +29,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.SONAR_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/site/apidocs
 
