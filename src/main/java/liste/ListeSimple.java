@@ -1,18 +1,35 @@
 package liste;
 
+/**
+ * Classe ListeSimple qui implémente une liste chaînée simple.
+ * Elle permet de manipuler une liste d'éléments de manière dynamique.
+ */
 public class ListeSimple {
     private long size;
     Noeud tete;
 
+    /**
+     * Retourne la taille de la liste.
+     * @return La taille de la liste.
+     */
     public long getSize() {
         return size;
     }
 
+    /**
+     * Ajoute un élément au début de la liste.
+     * @param element L'élément à ajouter dans la liste.
+     */
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
     }
 
+    /**
+     * Modifie le premier élément trouvé dans la liste qui correspond à l'élément spécifié.
+     * @param element L'élément à modifier.
+     * @param nouvelleValeur La nouvelle valeur à attribuer à l'élément.
+     */
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null && courant.getElement() != element)
@@ -21,6 +38,11 @@ public class ListeSimple {
             courant.setElement(nouvelleValeur);
     }
 
+    /**
+     * Modifie tous les éléments trouvés dans la liste qui correspondent à l'élément spécifié.
+     * @param element L'élément à modifier.
+     * @param nouvelleValeur La nouvelle valeur à attribuer à tous les éléments.
+     */
     public void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
@@ -30,6 +52,10 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Retourne une représentation en chaîne de caractères de la liste.
+     * @return La représentation sous forme de chaîne de caractères de la liste.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder("ListeSimple(");
         Noeud n = tete;
@@ -43,6 +69,10 @@ public class ListeSimple {
         return sb.toString();
     }
 
+    /**
+     * Supprime le premier élément trouvé dans la liste qui correspond à l'élément spécifié.
+     * @param element L'élément à supprimer.
+     */
     public void supprimePremier(Object element) {
         if (tete != null) {
             if (tete.getElement() == element) {
@@ -63,10 +93,20 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Supprime tous les éléments de la liste qui correspondent à l'élément spécifié.
+     * @param element L'élément à supprimer.
+     */
     public void supprimeTous(int element) {
-       tete = supprimeTousRecurs(element, tete);
+        tete = supprimeTousRecurs(element, tete);
     }
 
+    /**
+     * Supprime récursivement tous les éléments qui correspondent à l'élément spécifié.
+     * @param element L'élément à supprimer.
+     * @param tete La tête de la liste.
+     * @return La nouvelle tête de la liste après suppression des éléments.
+     */
     public Noeud supprimeTousRecurs(Object element, Noeud tete) {
         if (tete != null) {
             Noeud suiteListe = supprimeTousRecurs(element, tete.getSuivant());
@@ -80,6 +120,10 @@ public class ListeSimple {
         } else return null;
     }
 
+    /**
+     * Retourne l'élément avant le dernier élément de la liste.
+     * @return Le précédent élément avant le dernier, ou null si la liste est vide ou contient un seul élément.
+     */
     public Noeud getAvantDernier() {
         if (tete == null || tete.getSuivant() == null)
             return null;
@@ -94,6 +138,9 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Inverse l'ordre des éléments de la liste.
+     */
     public void inverser() {
         Noeud precedent = null;
         Noeud courant = tete;
@@ -106,8 +153,13 @@ public class ListeSimple {
         tete = precedent;
     }
 
+    /**
+     * Retourne l'élément précédent celui spécifié.
+     * @param r L'élément pour lequel on veut obtenir l'élément précédent.
+     * @return L'élément précédent, ou null si l'élément spécifié est le premier.
+     */
     public Noeud getPrecedent(Noeud r) {
-    // la liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement
+        // La liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement.
         Noeud precedent = tete;
         Noeud courant = precedent.getSuivant();
         while (courant != r) {
@@ -117,6 +169,11 @@ public class ListeSimple {
         return precedent;
     }
 
+    /**
+     * Échange deux éléments de la liste.
+     * @param r1 Le premier élément à échanger.
+     * @param r2 Le second élément à échanger.
+     */
     public void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
             return;
@@ -143,5 +200,4 @@ public class ListeSimple {
         r2.setSuivant(r1.getSuivant());
         r1.setSuivant(temp);
     }
-
 }
